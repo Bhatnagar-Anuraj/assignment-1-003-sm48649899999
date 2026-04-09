@@ -59,55 +59,122 @@ ground = cmds.polyPlane(
 cmds.move(0, ground_y_position, 0, ground)
 
 # ---------------------------------------------------------------------------
-# Example Object 1 -- a simple building (cube)
+# Example Object 1 -- head (cube)
 # This is provided as an example. Study it, then add your own objects below.
 # ---------------------------------------------------------------------------
-building_width = 4
-building_height = 6
-building_depth = 4
-building_x = -8
-building_z = 5
+head_width = 4
+head_height = 6
+head_depth = 4
+head_x = 0
+head_z = 0
 
-building = cmds.polyCube(
-    name="building_01",
-    width=building_width,
-    height=building_height,
-    depth=building_depth,
+head = cmds.polyCube(
+    name="head_01",
+    width=head_width,
+    height=head_height,
+    depth=head_depth,
 )[0]
-# Raise the building so its base sits on the ground plane.
-cmds.move(building_x, building_height / 2.0, building_z, building)
+#  Raise the head so its base sits on the ground plane at the origin
+cmds.move(head_x, head_height / 2.0, head_z, head)
 
 # ---------------------------------------------------------------------------
-# TODO: Add Object 2
+# TODO: Add Object 2 - bottom of hat (cone)
 # Create a second object using a DIFFERENT primitive type than the cube above.
 # Remember to:
 #   - Use descriptive variable names for size and position.
 #   - Name the object meaningfully with the 'name' parameter or cmds.rename().
 #   - Position it so it sits on the ground (not floating or buried).
 # ---------------------------------------------------------------------------
+bottom_of_hat_radius = 5
+bottom_of_hat_height = 3
+#size of the bottom of hat
+bottom_of_hat_x = head_x
+bottom_of_hat_y = head_height + bottom_of_hat_height / 2.0
+bottom_of_hat_z = head_z
+#make the bottom of hat match the house 
 
+bottom_of_hat = cmds.polyCone(
+    name="bottom_of_hat_02",
+    height=bottom_of_hat_height,
+    radius=bottom_of_hat_radius,
+)[0]
 
+cmds.move(bottom_of_hat_x, bottom_of_hat_y, bottom_of_hat_z, bottom_of_hat)
 # ---------------------------------------------------------------------------
-# TODO: Add Object 3
+# TODO: Add Object 3 - eye/left eye (sphere) 
 # ---------------------------------------------------------------------------
-
-
+eyes_radius = 0.3
+#tells us the size of the eyes
+eye_y = head_height = 6
+eye_z_offset = head_depth / 2 + 0.01 
+# Left eye
+left_eye_x = head_width/ 5
+#make the eye match the head
+left_eye = cmds.polySphere(
+    name="left_eye_04",
+     #renaming the cone as left eye_04
+     radius=eyes_radius
+    #show how tall the left eye is 
+)[0]
+cmds.move(left_eye_x, head_height/2, head_z + eye_z_offset, left_eye)
+ #makes sure the right eye is postioned correctly on the head 
 # ---------------------------------------------------------------------------
-# TODO: Add Object 4
+# TODO: Add Object 4 - right eye (sphere) 
 # ---------------------------------------------------------------------------
-
-
+# Right eye
+right_eye_x = -head_width / 5 
+#make the eye match the head
+right_eye = cmds.polySphere(
+    name="right_eye_05",
+     #renaming the cone as right eye_05
+     radius=eyes_radius
+    #show how tall the left eye is 
+)[0]
+cmds.move(right_eye_x, head_height/2, head_z + eye_z_offset, right_eye)
+  #makes sure the left eye is postioned correctly on the head 
 # ---------------------------------------------------------------------------
-# TODO: Add Object 5
+# TODO: Add Object 5 - top of hat (cone)
 # ---------------------------------------------------------------------------
+top_of_hat_radius = 2
+top_of_hat_height = 10
+#tells us the size of the top of hat
+top_of_hat_x = head_x
+top_of_hat_y = bottom_of_hat_height + bottom_of_hat_height + top_of_hat_height / 2
+top_of_hat_z = head_z
+#make the top of hat match the head
 
-
+top_of_hat = cmds.polyCone(
+    name="top_of_hat_03",
+     #renaming the cone as roof 
+   height=top_of_hat_height,
+    radius=top_of_hat_radius
+    #how tall the top of hat is
+)[0]
+cmds.move(top_of_hat_x, top_of_hat_y, top_of_hat_z, top_of_hat)
+  #makes sure the parts of the hat are placed correctly on top of tha head
 # ---------------------------------------------------------------------------
-# TODO (Optional): Add more objects to make your scene more interesting!
+# TODO (Optional): - mouth (cube) Add more objects to make your scene more interesting!
 # Consider: trees, lamp posts, fences, vehicles, animals, etc.
 # ---------------------------------------------------------------------------
+mouth_width = 2
+mouth_height = 0.5
+mouth_depth = 0.2
+#tells us the size of the mouth
+mouth_x = head_x
+mouth_y = head_height = 1
+mouth_z = head_z = 2
+#make the mouth match the head
 
-
+mouth = cmds.polyCube(
+    name="mouth_06",
+     #renaming the cube as the mouth
+   width=mouth_width,
+    height=mouth_height,
+    depth=mouth_depth
+    #how tall the mouth is
+)[0] 
+cmds.move(mouth_x, mouth_y, mouth_z, mouth)
+  #makes sure the mouth is plced correctly on the head
 # ---------------------------------------------------------------------------
 # Frame All -- so the whole scene is visible in the viewport.
 # (This is provided for you -- do not remove.)
